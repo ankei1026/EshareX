@@ -1,3 +1,4 @@
+import { Header } from '@/components/header-2';
 import { HeroGeometric } from '@/components/ui/shape-landing-hero';
 import { dashboard, login, register } from '@/routes';
 import { type SharedData } from '@/types';
@@ -9,6 +10,7 @@ export default function Welcome({ }) {
     return (
         <>
             <Head title="Welcome" />
+            <Header />
             <HeroGeometric />
         </>
     );
