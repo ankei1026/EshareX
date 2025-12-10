@@ -1,7 +1,7 @@
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import password, { email } from "@/routes/password";
-import { Link, useForm } from "@inertiajs/react";
+import { Link, router, useForm } from "@inertiajs/react";
 import Title from "../Components/Title";
 import { Button } from "@/components/ui/button";
 
@@ -12,6 +12,7 @@ const Register = ({ }) => {
         email: '',
         role: 'user',
         password: '',
+        password_confirmation: '',
     });
 
     const handleRegister = (e: React.FormEvent) => {
@@ -43,41 +44,73 @@ const Register = ({ }) => {
 
                         {/* Username */}
                         <Field>
-                            <FieldLabel htmlFor="">Username</FieldLabel>
-                            <Input />
-                            <FieldError>{ }</FieldError>
+                            <FieldLabel htmlFor="username">Username</FieldLabel>
+                            <Input
+                                id="username"
+                                required
+                                placeholder="jondoe1026"
+                                type="text"
+                                autoComplete="off"
+                                value={data.username}
+                                onChange={(e) => setData('username', e.target.value)}
+                            />
+                            <FieldError>{errors.username}</FieldError>
                         </Field>
 
                         {/* Email */}
                         <Field>
-                            <FieldLabel htmlFor="">Email</FieldLabel>
-                            <Input />
-                            <FieldError>{ }</FieldError>
+                            <FieldLabel htmlFor="email">Email</FieldLabel>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="jondoe@example.com"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
+                            />
+                            <FieldError>{errors.email}</FieldError>
                         </Field>
 
                         {/* Role */}
                         <Field className="hidden">
-                            <FieldLabel htmlFor="">Role</FieldLabel>
-                            <Input />
-                            <FieldError>{ }</FieldError>
+                            <FieldLabel htmlFor="role">Role</FieldLabel>
+                            <Input
+                                id="role"
+                                required
+                                value={data.role}
+                            />
+                            <FieldError>{errors.role}</FieldError>
                         </Field>
 
                         {/* Password */}
                         <Field>
-                            <FieldLabel htmlFor="">Password</FieldLabel>
-                            <Input />
-                            <FieldError>{ }</FieldError>
+                            <FieldLabel htmlFor="password">Password</FieldLabel>
+                            <Input
+                                id="password"
+                                type="password"
+                                required
+                                value={data.password}
+                                placeholder="◦◦◦◦◦◦◦◦"
+                                onChange={(e) => setData('password', e.target.value)}
+                            />
+                            <FieldError>{errors.password}</FieldError>
                         </Field>
 
                         {/* Confirm Password */}
                         <Field>
-                            <FieldLabel htmlFor="">Confirm Password</FieldLabel>
-                            <Input />
-                            <FieldError>{ }</FieldError>
+                            <FieldLabel htmlFor="confirm_password">Confirm Password</FieldLabel>
+                            <Input
+                                id="confirm_password"
+                                type="password"
+                                required
+                                value={data.password_confirmation}
+                                placeholder="◦◦◦◦◦◦◦◦"
+                                onChange={(e) => setData('password_confirmation', e.target.value)}
+                            />
+                            <FieldError>{errors.password_confirmation}</FieldError>
                         </Field>
 
                         <Button type="submit">Register</Button>
-                        <p className="text-center text-gray-400 text-sm dark:text-gray-400 m-0 p-0"> Already have an account? <Link className="text-muted-foreground dark:text-gray-300 hover:underline">Login</Link></p>
+                        <p className="text-center text-gray-400 text-sm dark:text-gray-400 m-0 p-0"> Already have an account? <Link href="/login" className="text-muted-foreground dark:text-gray-300 hover:underline"> Login</Link></p>
                         <p className="text-center text-sm text-gray-400"> Go to <Link href="/" className="text-muted-foreground dark:text-gray-300 hover:underline">Home</Link></p>
                     </FieldGroup>
                 </FieldSet>

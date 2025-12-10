@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input";
 import Title from "../Components/Title";
-import { useForm } from "@inertiajs/react";
+import { Link, router, useForm } from "@inertiajs/react";
 import password from "@/routes/password";
 import { Button } from "@/components/ui/button";
 
@@ -31,10 +31,12 @@ const Login = () => {
             <form className="w-full  lg:w-1/2 flex items-center justify-center" onSubmit={handleLogin}>
                 <FieldSet className="w-100">
                     <Title>Login to EshareX</Title>
-                    <FieldDescription>This appears on invoices and emails.</FieldDescription>
+                    <FieldDescription>Login and share things.</FieldDescription>
+
+                    {/* Userbane */}
                     <FieldGroup>
                         <Field>
-                            <FieldLabel htmlFor="username">Full name</FieldLabel>
+                            <FieldLabel htmlFor="username">Username</FieldLabel>
                             <Input
                                 id="username"
                                 type="name"
@@ -45,6 +47,8 @@ const Login = () => {
                                 value={data.username} />
                             <FieldError>{errors.username}</FieldError>
                         </Field>
+
+                        {/* Password */}
                         <Field>
                             <FieldLabel htmlFor="password">Password</FieldLabel>
                             <Input
@@ -52,11 +56,13 @@ const Login = () => {
                                 type="password"
                                 autoComplete="off"
                                 required
+                                placeholder="◦◦◦◦◦◦◦◦"
                                 onChange={(e) => setData('password', e.target.value)}
-                                aria-invalid />
+                            />
                             <FieldError>{errors.password}</FieldError>
                         </Field>
                     </FieldGroup>
+                    <a href="" className="text-end text-muted-foreground dark:text-gray-300 hover:underline text-sm">Forgot password?</a>
                     <Button
                         className="w-full"
                         type="submit"
@@ -65,12 +71,11 @@ const Login = () => {
                     >
                         Login
                     </Button>
+                    <p className="text-center text-gray-400 text-sm dark:text-gray-400 m-0 p-0"> Don't have an account? <Link href="/register" className="text-muted-foreground dark:text-gray-300 hover:underline">Register</Link></p>
+                    <p className="text-center text-sm text-gray-400"> Go to <Link href="/" className="text-muted-foreground dark:text-gray-300 hover:underline">Home</Link></p>
                 </FieldSet>
 
             </form>
-            <div className="w-1/2 h-full hidden lg:block dark:bg-white bg-black">
-                <h1 className="text-black">Hello</h1>
-            </div>
         </div>
     )
 }
