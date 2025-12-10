@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tags_id');
             $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
 
-            $table->unique(['post_id', 'tag_id']);
+            $table->unique(['post_id', 'tags_id']);
         });
     }
 

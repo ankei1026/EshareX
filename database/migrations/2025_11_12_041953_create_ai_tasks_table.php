@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('ai_tasks', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['summarization', 'tagging', 'recommendation', 'moderation', 'generation']);
-            $table->longText('input_data');
             $table->longText('input_data')->nullable();
             $table->enum('status', ['pending', 'processing', 'done', 'failed']);
             $table->string('related_type')->nullable();

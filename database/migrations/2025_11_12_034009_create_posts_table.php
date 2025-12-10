@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('cover_image')->nullable();
             $table->enum('status', ['draft', 'published', 'archived']);
             $table->dateTime('published_at')->nullable()->index();
-            $table->int('reading_time')->nullable();
+            $table->string('reading_time')->nullable();
             $table->timestamps();
         });
     }

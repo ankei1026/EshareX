@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->text('query');
-            $table->int('results_count');
+            $table->string('results_count');
 
             $table->timestamps();
         });
