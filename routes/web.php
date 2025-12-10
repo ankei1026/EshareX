@@ -10,6 +10,14 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+Route::get('/login', function() {
+    return Inertia::render('Auths/Login');
+})->name('login');
+
+Route::get('/register', function() {
+    return Inertia::render('Auths/Register');
+})->name('register');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');

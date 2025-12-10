@@ -4,6 +4,7 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/menu-toggle-icon';
 import { useScroll } from '@/components/use-scroll';
+import { router } from '@inertiajs/react';
 
 export function Header() {
 	const [open, setOpen] = React.useState(false);
@@ -65,7 +66,7 @@ export function Header() {
 							{link.label}
 						</a>
 					))}
-					<Button variant="outline">Sign In</Button>
+					<Button variant="outline" onClick={() => router.get('/login')}>Log In</Button>
 					<Button>Get Started</Button>
 				</div>
 				<Button size="icon" variant="outline" onClick={() => setOpen(!open)} className="md:hidden">
