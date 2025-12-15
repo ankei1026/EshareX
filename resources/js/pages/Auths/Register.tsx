@@ -1,6 +1,5 @@
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import password, { email } from "@/routes/password";
 import { Link, router, useForm } from "@inertiajs/react";
 import Title from "../Components/Title";
 import { Button } from "@/components/ui/button";
@@ -10,14 +9,19 @@ const Register = ({ }) => {
         name: '',
         username: '',
         email: '',
-        role: 'user',
+        bio: '',
+        role: 'admin',
         password: '',
         password_confirmation: '',
     });
 
     const handleRegister = (e: React.FormEvent) => {
         e.preventDefault();
+        post('/register', {
+            onSuccess: () => reset('password', 'password_confirmation')
+        });
     }
+
 
     return (
         <div className="h-screen w-full flex justify-center items-center">
@@ -70,6 +74,19 @@ const Register = ({ }) => {
                             <FieldError>{errors.email}</FieldError>
                         </Field>
 
+                        {/* Bio */}
+                        <Field>
+                            <FieldLabel htmlFor="bio">Bio</FieldLabel>
+                            <Input
+                                id="bio"
+                                type="bio"
+                                placeholder="Life is a fiction."
+                                value={data.bio}
+                                onChange={(e) => setData('bio', e.target.value)}
+                            />
+                            <FieldError>{errors.email}</FieldError>
+                        </Field>
+
                         {/* Role */}
                         <Field className="hidden">
                             <FieldLabel htmlFor="role">Role</FieldLabel>
@@ -109,7 +126,7 @@ const Register = ({ }) => {
                             <FieldError>{errors.password_confirmation}</FieldError>
                         </Field>
 
-                        <Button type="submit">Register</Button>
+                        <Button type="submit" disabled={processing}>Register</Button>
                         <p className="text-center text-gray-400 text-sm dark:text-gray-400 m-0 p-0"> Already have an account? <Link href="/login" className="text-muted-foreground dark:text-gray-300 hover:underline"> Login</Link></p>
                         <p className="text-center text-sm text-gray-400"> Go to <Link href="/" className="text-muted-foreground dark:text-gray-300 hover:underline">Home</Link></p>
                     </FieldGroup>
