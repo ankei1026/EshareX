@@ -24,6 +24,10 @@ const Login = () => {
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
+        post('/login',
+            {
+                onSuccess: () => 'Logged in Successfully!'
+            });
     }
 
     return (
@@ -33,7 +37,7 @@ const Login = () => {
                     <Title>Login to EshareX</Title>
                     <FieldDescription>Login and share things.</FieldDescription>
 
-                    {/* Userbane */}
+                    {/* Username */}
                     <FieldGroup>
                         <Field>
                             <FieldLabel htmlFor="username">Username</FieldLabel>

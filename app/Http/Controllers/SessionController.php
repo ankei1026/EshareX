@@ -10,12 +10,12 @@ class SessionController extends Controller
 {
     public function store(Request $request)
     {
-                $credentials = $request->validate([
+        $credentials = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
-        if(!Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()->withErrors([
                 'username' => 'The provided credentials do not match our records.',
                 'password' => 'The provided credentials do not match our records.',
@@ -26,10 +26,9 @@ class SessionController extends Controller
 
         $user = Auth::user();
 
-        switch ($user -> role) {
+        switch ($user->role) {
             case 'admin':
-                return redirect();
+                return redirect()->route('dashboard')->with('success', 'Logged in');
         }
-
     }
 }
