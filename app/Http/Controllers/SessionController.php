@@ -28,7 +28,7 @@ class SessionController extends Controller
 
         switch ($user->role) {
             case 'admin':
-                return redirect()->route('dashboard')->with('success', 'Logged in');
+                return redirect()->route('admin.dashboard')->with('success', 'Logged in');
         }
     }
 }

@@ -2,12 +2,44 @@ import { SVGAttributes } from 'react';
 
 export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
     return (
-        <svg {...props} viewBox="0 0 40 42" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M17.2 5.63325L8.6 0.855469L0 5.63325V32.1434L16.2 41.1434L32.4 32.1434V23.699L40 19.4767V9.85547L31.4 5.07769L22.8 9.85547V18.2999L17.2 21.411V5.63325ZM38 18.2999L32.4 21.411V15.2545L38 12.1434V18.2999ZM36.9409 10.4439L31.4 13.5221L25.8591 10.4439L31.4 7.36561L36.9409 10.4439ZM24.8 18.2999V12.1434L30.4 15.2545V21.411L24.8 18.2999ZM23.8 20.0323L29.3409 23.1105L16.2 30.411L10.6591 27.3328L23.8 20.0323ZM7.6 27.9212L15.2 32.1434V38.2999L2 30.9666V7.92116L7.6 11.0323V27.9212ZM8.6 9.29991L3.05913 6.22165L8.6 3.14339L14.1409 6.22165L8.6 9.29991ZM30.4 24.8101L17.2 32.1434V38.2999L30.4 30.9666V24.8101ZM9.6 11.0323L15.2 7.92117V22.5221L9.6 25.6333V11.0323Z"
-            />
+        <svg {...props} viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="shareGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2563EB" />
+                    <stop offset="100%" stopColor="#7C3AED" />
+                </linearGradient>
+            </defs>
+            
+            {/* Abstract "S" shape representing Share with connection dots */}
+            <g>
+                {/* Connection points */}
+                <circle cx="15" cy="15" r="5" fill="#2563EB" opacity="0.9" />
+                <circle cx="45" cy="15" r="5" fill="#7C3AED" opacity="0.9" />
+                <circle cx="15" cy="45" r="5" fill="#10B981" opacity="0.9" />
+                <circle cx="45" cy="45" r="5" fill="#F59E0B" opacity="0.9" />
+                
+                {/* Curved connection paths forming an "S" for Share */}
+                <path
+                    d="M15 15 Q30 10 45 15 Q50 25 45 35 Q40 40 35 35 Q30 30 35 25 Q40 20 45 25 Q50 30 45 45"
+                    stroke="url(#shareGradient)"
+                    strokeWidth="4"
+                    fill="none"
+                    strokeLinecap="round"
+                />
+                
+                {/* Arrowhead indicating sharing direction */}
+                <path
+                    d="M45 45 L55 45 L51 41 M55 45 L51 49"
+                    stroke="url(#shareGradient)"
+                    strokeWidth="3"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                
+                {/* Center dot for focus */}
+                <circle cx="30" cy="30" r="3" fill="url(#shareGradient)" />
+            </g>
         </svg>
     );
 }

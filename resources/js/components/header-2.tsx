@@ -4,10 +4,16 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/menu-toggle-icon';
 import { useScroll } from '@/components/use-scroll';
-import { router } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
+import AppLogoIcon from './app-logo-icon';
+import { SharedData } from '@/types';
 
 export function Header() {
+
+	const { auth } = usePage<SharedData>().props;
+
 	const [open, setOpen] = React.useState(false);
+
 	const scrolled = useScroll(10);
 
 	const links = [
@@ -66,8 +72,16 @@ export function Header() {
 							{link.label}
 						</a>
 					))}
-					<Button variant="outline" onClick={() => router.get('/login')}>Log In</Button>
-					<Button>Get Started</Button>
+					{auth?.user ? (
+						<Button variant="outline" className="w-full" onClick={() => router.get(`/${auth.user.role}/dashboard`)}>
+							Dashboard
+						</Button>
+					) : (
+						<Button variant="outline" className="w-full" onClick={() => router.get('/login')}>
+							Log in
+						</Button>
+					)}
+					<Button className="w-full">Get Started</Button>
 				</div>
 				<Button size="icon" variant="outline" onClick={() => setOpen(!open)} className="md:hidden">
 					<MenuToggleIcon open={open} className="size-5" duration={300} />
@@ -102,19 +116,32 @@ export function Header() {
 						))}
 					</div>
 					<div className="flex flex-col gap-2">
-						<Button variant="outline" className="w-full">
-							Sign In
-						</Button>
+						{auth?.user ? (<Button variant="outline" className="w-full" onClick={() => router.get(`/${auth.user.role}/dashboard`)}>
+							Dashboard
+						</Button>) : <Button variant="outline" className="w-full" onClick={() => router.get('/login')}>
+							Log In
+						</Button>}
+
 						<Button className="w-full">Get Started</Button>
 					</div>
 				</div>
 			</div>
-		</header>
+		</header >
 	);
 }
 
-export const WordmarkIcon = (props: React.ComponentProps<"h1">) => (
-	<h1 className='font-bold' {...props}>
-		EshareX
-	</h1>
-);
+export const WordmarkIcon = (props: React.ComponentProps<"div">) => {
+	const { className, ...rest } = props;
+
+	return (
+		<div
+			className={cn('flex items-center gap-2', className)}
+			{...rest}
+		>
+			<AppLogoIcon className="h-8 w-8" />
+			<h1 className='font-bold text-lg'>
+				EshareX
+			</h1>
+		</div>
+	);
+};
