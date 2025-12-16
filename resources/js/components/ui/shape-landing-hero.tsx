@@ -4,6 +4,8 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Circle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import AppLogoIcon from "../app-logo-icon";
+import AppLogo from "../app-logo";
 
 
 function ElegantShape({
@@ -152,12 +154,10 @@ function HeroGeometric({
                         variants={fadeUpVariants}
                         initial="hidden"
                         animate="visible"
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
+                        className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
                     >
-                        <Circle className="h-2 w-2 fill-rose-500/80" />
-                        <span className="text-sm text-white/60 tracking-wide">
-                            {badge}
-                        </span>
+                        <AppLogoIcon className="size-16 md:size-24 lg:size-24" />
+                        <h1 className="font-bold text-xl md:text-2xl lg:text-4xl">EshareX</h1>
                     </motion.div>
 
                     <motion.div
@@ -188,7 +188,7 @@ function HeroGeometric({
                         animate="visible"
                     >
                         <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-                            EshareX — AI-powered blogging to craft clearer ideas, spark fresh insights, and share what matters.
+                            AI-powered blogging to craft clearer ideas, spark fresh insights, and share what matters.
                         </p>
                     </motion.div>
                 </div>
