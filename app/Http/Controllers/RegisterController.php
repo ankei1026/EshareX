@@ -12,9 +12,13 @@ class RegisterController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:50',
-            'username' => 'required|string|max:50',
-            'bio' => 'required|string|max:50',
+            'username' => 'required|string|unique:users,username|max:50',
             'email' => 'required|string|email|max:50|unique:users,email',
+            [
+                'username.unique' => 'This username is already taken.',
+                'email.unique' => 'This email is already registered.',
+            ],
+            'bio' => 'required|string|max:50',
             'role' => 'required|string|max:50',
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);

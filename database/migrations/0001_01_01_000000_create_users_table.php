@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('bio')->nulalble();
+            $table->string('bio')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('role', ['admin', 'author', 'editor', 'reader']);
+            $table->enum('role', ['admin', 'user'])->default('user');
             $table->string('avatar')->nullable();
             $table->string('password');
             $table->rememberToken();

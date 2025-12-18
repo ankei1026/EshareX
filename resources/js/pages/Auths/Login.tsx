@@ -15,8 +15,11 @@ import Title from "../Components/Title";
 import { Link, router, useForm } from "@inertiajs/react";
 import password from "@/routes/password";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/toast-1";
 
 const Login = () => {
+    const { showToast } = useToast();
+
     const { data, setData, post, processing, errors, reset } = useForm({
         username: '',
         password: '',
@@ -26,7 +29,12 @@ const Login = () => {
         e.preventDefault();
         post('/login',
             {
-                onSuccess: () => 'Logged in Successfully!'
+                onSuccess: () => {
+                    showToast("Logged in Successfully!", "success", "top-right");
+                },
+                onError: () => {
+                    showToast("Invalid Credentials!", "error", "top-right");
+                }
             });
     }
 

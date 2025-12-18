@@ -3,8 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Link, router, useForm } from "@inertiajs/react";
 import Title from "../Components/Title";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/toast-1";
 
 const Register = ({ }) => {
+
+    const { showToast } = useToast();
+
     const { data, setData, errors, post, processing, reset } = useForm({
         name: '',
         username: '',
@@ -18,10 +22,12 @@ const Register = ({ }) => {
     const handleRegister = (e: React.FormEvent) => {
         e.preventDefault();
         post('/register', {
-            onSuccess: () => reset('password', 'password_confirmation')
+            onSuccess: () => {
+                showToast("Account created successfully!", "success", "top-right")
+            },
+            onError: () => { showToast("Failed to create account!", "error", "top-right") }
         });
     }
-
 
     return (
         <div className="h-screen w-full flex justify-center items-center">
@@ -84,7 +90,7 @@ const Register = ({ }) => {
                                 value={data.bio}
                                 onChange={(e) => setData('bio', e.target.value)}
                             />
-                            <FieldError>{errors.email}</FieldError>
+                            <FieldError>{errors.bio}</FieldError>
                         </Field>
 
                         {/* Role */}

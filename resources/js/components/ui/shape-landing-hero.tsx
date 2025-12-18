@@ -157,7 +157,7 @@ function HeroGeometric({
                         className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
                     >
                         <AppLogoIcon className="size-16 md:size-24 lg:size-24" />
-                        <h1 className="font-bold text-xl md:text-2xl lg:text-4xl">EshareX</h1>
+                        <h1 className="font-bold text-xl md:text-2xl lg:text-4xl text-white dark:text-white ">EshareX</h1>
                     </motion.div>
 
                     <motion.div
